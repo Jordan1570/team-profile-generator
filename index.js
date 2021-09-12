@@ -31,14 +31,15 @@ function init() {
             message: 'What is your office number?'
         }
 
-    ]).then(res=> {
+    ])
+    .then(res=> {
         const manager = new Manager(res.managerName, res.managerId, res.managerEmail , res.managerOfficeNumber) 
         
         // adding new manager to team array
         teamArray.push(manager)
-    }
+    })
 
-    )
+    
 } 
 
 function addTeamMember() {
@@ -50,9 +51,24 @@ function addTeamMember() {
         {
             type: 'list',
             name: 'role',
+            message: 'Do you want to add an intern or an engineer?',
+            choices: ['Engineer', 'Intern']
         }
     ])
+    
+    .then(res=> {
+        if (res.role === 'Engineer') {
+            createEnginner()
+
+        }
+
+        if (res.role === 'Intern') {
+            createIntern()
+        }
+    })   
+        
 }
+
 
 
 
