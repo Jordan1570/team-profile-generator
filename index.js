@@ -3,8 +3,6 @@ const inquirer = require('inquirer');
 const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
-const { listenerCount } = require('process');
-const { default: generate } = require('@babel/generator');
 const generateTeamHtml = require('./generateTeamHtml');
 const teamArray = []
 
@@ -14,7 +12,7 @@ function init() {
     // prompt to get manager's information
     inquirer.prompt([ 
         {
-            name: 'managerName',
+            name: 'managerName', 
             message: 'What is your name? ',
         },
 
@@ -39,6 +37,8 @@ function init() {
         
         // adding new manager to team array
         teamArray.push(manager)
+
+        addTeamMember()
     })
 
     
@@ -56,7 +56,7 @@ function addTeamMember() {
             type: 'list',
             name: 'role',
             message: 'Do you want to add an intern or an engineer?',
-            choices: ['Engineer', 'Intern', 'None']
+            choices: ['Engineer', 'Intern', 'Finished']
         }
     ])
     
@@ -71,69 +71,78 @@ function addTeamMember() {
             console.log(res.role)
             createIntern()
         }
+
+        if (res.role === 'Finished') {
+            console.log('No more hires')
+
+            createTeam()
+            
+        }
     })   
         
 }
 
 // creating engineer card with prompts
 function createEnginner() {
-    console.log('Hi Genius')
+    console.log('Add Your Genius\n')
 
     inquirer.prompt([
 
         {
            name: 'engineerName',
-           message: 'What is your name?'
+           message: 'What is the engineer\'s name?'
         },
 
         {
             name: 'engineerId',
-            message: 'What is your ID?'
+            message: 'What is the engineer\'s ID?'
         },
 
         {
             name: 'engineerEmail',
-            message: 'What is your email?'
+            message: 'What is the engineer\'s email?'
         },
 
         {
             name: 'engineerGithub',
-            message: 'What is your Github?'
+            message: 'What is the engineer\'s Github?'
         }
  
     ])
     .then(res=> {
-        const engineer = new Engineer(res.engineerName, res.engineerId, res.engineerEmail , res.enginnerGithub) 
+        const engineer = new Engineer(res.engineerName, res.engineerId, res.engineerEmail , res.engineerGithub) 
         
         // adding new manager to team array
         teamArray.push(engineer)
+
+        addTeamMember()
     })
 }
 
 // creating intern card with prompts
 function createIntern() {
-    console.log('Hi Future Genius')
+    console.log('Add Your Future Genius\n')
 
     inquirer.prompt([
 
         {
             name: 'internName',
-            message: 'What is your name?'
+            message: 'What is your intern\'s name?'
         },
 
         {
             name: 'internId',
-            message: 'What is your ID?',
+            message: 'What is your intern\'s ID?',
         },
 
         {
             name: 'internEmail',
-            message: 'What is your email?'
+            message: 'What is your intern\'s email?'
         },
 
         {
             name: 'internSchool',
-            message: 'What school do you go to?'
+            message: 'What school did your intern go to?'
         }
     ])
     .then(res=> {
@@ -141,15 +150,18 @@ function createIntern() {
         
         // adding new manager to team array
         teamArray.push(intern)
+
+        addTeamMember()
     })
 
 }
 
 function createTeam() {
-    generateTeam(teamArray)
+    // generateTeam(teamArray)
+    console.log(teamArray)
 }
 
-function generateTeam(team) {
+function generateTeam(teamArray) {
     
     return `
     
