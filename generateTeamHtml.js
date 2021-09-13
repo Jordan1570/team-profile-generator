@@ -35,14 +35,13 @@ module.exports = function(team) {
                         <h5 class="card-title">Manager</h5>
                         <h4>${team[0].name}</h4>
                         <ul>
-                            <li>${team[0].id}</li>
-                            <li>${team[0].email}</li>
-                            <li>${team[0].officeNumber}</li>
+                            <li>ID: ${team[0].id}</li>
+                            <li>Email: ${team[0].email}</li>
+                            <li>Office Number: ${team[0].officeNumber}</li>
                         </ul>
                     </div>
                 </div>
             </div>
-            ${renderEmployeeCards}
         </div>
     </body>
     

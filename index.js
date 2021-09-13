@@ -159,6 +159,8 @@ function createIntern() {
 function createTeam() {
     // generateTeam(teamArray)
     console.log(teamArray)
+    const teamHtml = generateTeamHtml(teamArray)
+    console.log(teamHtml)
 }
 
 function generateTeam(teamArray) {
