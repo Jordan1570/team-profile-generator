@@ -1,3 +1,4 @@
+
 function generateTeamCards(team) {
 
     let html = ''
@@ -16,11 +17,11 @@ function generateTeamCards(team) {
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Engineer</h5>
-                        <h4>${tm.getName()}</h4>
+                        <h4> ${tm.getName()}</h4>
                         <ul>
-                            <li>ID:${tm.getId()} </li>
-                            <li>Email:${tm.getEmail()} </li>
-                            <li>Github:${tm.getGithub()} </li>
+                            <li>ID: ${tm.getId()} </li>
+                            <li>Email: ${tm.getEmail()} </li>
+                            <li>Github: ${tm.getGithub()} </li>
                         </ul>
                     </div>
                 </div>
@@ -36,11 +37,11 @@ function generateTeamCards(team) {
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Intern</h5>
-                        <h4>${tm.getName()}</h4>
+                        <h4> ${tm.getName()}</h4>
                         <ul>
-                            <li>ID:${tm.getId()} </li>
-                            <li>Email:${tm.getEmail()} </li>
-                            <li>School:${tm.getSchool()} </li>
+                            <li>ID: ${tm.getId()} </li>
+                            <li>Email: ${tm.getEmail()} </li>
+                            <li>School: ${tm.getSchool()} </li>
                         </ul>
                     </div>
                 </div>
