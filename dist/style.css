@@ -8,6 +8,7 @@ h1 {
 
 .col-sm-3 {
     justify-content: center;
+    margin: 0;
 }
 
 .row {

@@ -1,18 +1,63 @@
-{/* <div class='col-sm-3'>
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">Employee Name</h5>
-            <h4>Employee Role</h4>
-            <ul>
-                <li>placehold</li>
-                <li>placehold</li>
-                <li>placehold</li>
-            </ul>
-        </div>
-    </div>
-</div> */}
+function generateTeamCards(team) {
 
-module.exports = function(team) {
+    let html = ''
+
+    // removed manager from first index
+    team.shift()
+
+    console.log('team to generate', team)
+
+    team.forEach(tm => {
+        if (tm.getRole() === 'Engineer') {
+
+            html = html + `
+            
+            <div class='col-sm-3'>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Engineer</h5>
+                        <h4>${tm.getName()}</h4>
+                        <ul>
+                            <li>ID:${tm.getId()} </li>
+                            <li>Email:${tm.getEmail()} </li>
+                            <li>Github:${tm.getGithub()} </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>`
+
+        }
+
+        if (tm.getRole() === 'Intern') {
+
+            html = html + `
+
+            <div class='col-sm-3'>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Intern</h5>
+                        <h4>${tm.getName()}</h4>
+                        <ul>
+                            <li>ID:${tm.getId()} </li>
+                            <li>Email:${tm.getEmail()} </li>
+                            <li>School:${tm.getSchool()} </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            `
+        }
+        
+    });
+
+
+    return html 
+
+}
+
+function generateTeamHtml(team) {
+    
     return `<!DOCTYPE html>
     <html lang="en">
     
@@ -33,15 +78,16 @@ module.exports = function(team) {
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">Manager</h5>
-                        <h4>${team[0].name}</h4>
+                        <h4>${team[0].getName()}</h4>
                         <ul>
-                            <li>ID: ${team[0].id}</li>
-                            <li>Email: ${team[0].email}</li>
-                            <li>Office Number: ${team[0].officeNumber}</li>
+                            <li>ID: ${team[0].getId()}</li>
+                            <li>Email: ${team[0].getEmail()}</li>
+                            <li>Office Number: ${team[0].getOfficeNumber()}</li>
                         </ul>
                     </div>
                 </div>
             </div>
+            ${generateTeamCards(team)}
         </div>
     </body>
     
@@ -49,3 +95,5 @@ module.exports = function(team) {
     
     `
 }
+
+module.exports = generateTeamHtml

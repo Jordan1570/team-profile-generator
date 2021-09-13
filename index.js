@@ -49,7 +49,6 @@ function init() {
 
 // adding team memmber to team by asking Engineer or intern
 function addTeamMember() {
-    console.log('Hello')
 
     // adding engineer, or intern 
     inquirer.prompt([
@@ -63,20 +62,16 @@ function addTeamMember() {
     ])
     
     .then(res=> {
-        console.log(res.role)
         if (res.role === 'Engineer') {
             createEnginner()
 
         }
 
         if (res.role === 'Intern') {
-            console.log(res.role)
             createIntern()
         }
 
         if (res.role === 'Finished') {
-            console.log('No more hires')
-
             createTeam()
             
         }
@@ -148,9 +143,10 @@ function createIntern() {
         }
     ])
     .then(res=> {
+        // creating a new intern object
         const intern = new Intern(res.internName, res.internId, res.internEmail , res.internSchool) 
         
-        // adding new manager to team array
+        // adds intern to team array
         teamArray.push(intern)
 
         addTeamMember()
@@ -160,9 +156,7 @@ function createIntern() {
 
 function createTeam() {
     // generateTeam(teamArray)
-    console.log(teamArray)
     const teamHtml = generateTeamHtml(teamArray)
-    console.log(teamHtml)
 
     generateTeam(teamHtml)
 
