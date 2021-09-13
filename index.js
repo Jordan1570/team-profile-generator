@@ -1,9 +1,11 @@
 const fs = require('fs');
+const path = require('path')
 const inquirer = require('inquirer');
 const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 const generateTeamHtml = require('./generateTeamHtml');
+const htmlFile = path.join(__dirname, 'dist', 'index.html')
 const teamArray = []
 
 function init() {
@@ -161,20 +163,24 @@ function createTeam() {
     console.log(teamArray)
     const teamHtml = generateTeamHtml(teamArray)
     console.log(teamHtml)
+
+    generateTeam(teamHtml)
+
+
 }
 
-function generateTeam(teamArray) {
+function generateTeam(teamHtml) {
     
-    return `
+    fs.writeFile(htmlFile, teamHtml, err => {
+
+        if (err) {
+            console.log(err)
+        }
+
+        return
+        
+    })
     
-    
-    
-    
-    
-    
-    
-    
-    `
 }
 
 
